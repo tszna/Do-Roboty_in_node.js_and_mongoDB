@@ -1,0 +1,350 @@
+<%- include("header") -%>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+  }
+
+  form {
+    border: 3px solid #f1f1f1;
+  }
+
+  input[type=text],
+  input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #a683e3;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+  }
+
+  button#newItemSubmitButton {
+    background-color: transparent;
+    color: black;
+    outline: 0;
+    max-width: 42px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    transition: all 0.2s ease-in-out;
+  }
+
+  button#newItemSubmitButton:hover {
+    border: 2px solid black;
+    border-radius: 2em;
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+  }
+
+  p.item358 {
+    border:0;
+    padding:0;
+    margin-left: -18px;
+    margin-top: -6px;
+  }
+
+  p.item359 {
+    border:0;
+    padding:0;
+    margin-left: -5px;
+    margin-top: -6px;
+  }
+ 
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+
+    .cancelbtn {
+      width: 100%;
+    }
+  }
+
+  #myUL {
+    /* Remove default list styling */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  #myUL li a {
+    border: 1px solid #ddd;
+    /* Add a border to all links */
+    margin-top: -1px;
+    /* Prevent double borders */
+    background-color: #f6f6f6;
+    /* Grey background color */
+    padding: 12px;
+    /* Add some padding */
+    text-decoration: none;
+    /* Remove default text underline */
+    font-size: 18px;
+    /* Increase the font-size */
+    color: black;
+    /* Add a black text color */
+    display: block;
+    /* Make it into a block element to fill the whole list */
+  }
+
+  #myUL li a:hover:not(.header) {
+    background-color: #eee;
+    /* Add a hover effect to all links, except for headers */
+  }
+
+  .box {
+    margin-bottom: 20px;
+  }
+
+  .sidebar {
+    margin: 0;
+    padding: 0;
+    width: 300px;
+    background-color: #80dfff;
+    /*background-color: #326b11;*/
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+  }
+
+  .sidebar a.active {
+    background-color: #a683e3;
+    color: white;
+  }
+
+  .sidebar a.manage {
+    margin-top: 10px;
+    background-color: green;
+    color: white;
+    bottom: 0;
+  }
+
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+
+  div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+  }
+
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
+    .sidebar a {
+      float: left;
+    }
+
+    div.content {
+      margin-left: 0;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
+
+  .btn {
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    padding: 4px !important;
+    font-size: 12px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+
+    display: inline-block !important;
+  }
+
+  /* Green */
+  .success {
+    border-color: #4CAF50 !important;
+    color: green !important;
+  }
+
+  .success:hover {
+    background-color: #4CAF50 !important;
+    color: white !important;
+  }
+
+  /* Blue */
+  .info {
+    border-color: #2196F3 !important;
+    color: dodgerblue;
+  }
+
+  .info:hover {
+    background: #2196F3 !important;
+    color: white;
+  }
+
+  /* Orange */
+  .warning {
+    border-color: #ff9800 !important;
+    color: orange;
+  }
+
+  .warning:hover {
+    background: #ff9800 !important;
+    color: white;
+  }
+
+  /* Red */
+  .danger {
+    border-color: #f44336 !important;
+    color: red;
+  }
+
+  .danger:hover {
+    background: #f44336 !important;
+    color: white;
+  }
+
+  .listName {
+    font-size: 30px;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+
+  .listGroupBox {
+    padding: 20px;
+    cursor: pointer;
+  }
+  .listGroupBox:hover{
+    background-color: #a683e3;
+    color: white;
+  }
+
+  div .active {
+    background-color: #a683e3;
+    color: white;
+  }
+</style>
+
+<div class="sidebar">
+  <h1 style="color: black;display: inline-block; vertical-align: middle;"> Lists </h1> <a class="btn info"
+    href="/Signout">Signout</a>
+  <%  parents.forEach(function(p){ %>
+  <% if (p.name==listTitle) { %>
+  <div class="listGroupBox active" onclick="GoToList(this)">
+    <span class="listName"><%=p.name%></span>
+    <a style="margin-left:-0.5vw;" class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
+    <a class="btn danger" href="/group/delete/<%=p._id%>">Delete</a>
+  </div>
+  <%} else { %>
+  <div class="listGroupBox" onclick="GoToList(this)">
+    <span class="listName"><%=p.name%></span>
+    <a style="margin-left:-0.5vw;" class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
+    <a class="btn danger" href="/group/delete/<%=p._id%>">Delete</a>
+  </div>
+
+  <% } %>
+  <%  }) %>
+  <div class="box">
+    <form class="item" action="/group/add" method="post">
+        <input type="text" placeholder="Add New List" name="newGroup" autocomplete="off" required>
+        <button type="submit"  name="list">+</button>
+    </form>
+  </div>
+</div>
+<div class="content">
+  <div>
+    <div class="box" id="heading">
+      <h1> List: <%= listTitle %> </h1>
+    </div>
+
+    <div class="box">
+
+
+      <%  newListItems.forEach(function(item){ %>
+
+      <form action="/list/delete/<%=item.parent%>" method="post">
+        <div class="item" ondblclick="PutForEdit(this)">
+          <input type="checkbox" class="listcheckbox" name="checkbox" value="<%=item._id%>"
+            onChange="this.form.submit()">
+          <p><%=item.name%></p>
+        </div>
+      </form>
+      <%  }) %>
+    </div>
+    <div class="box">
+      <form class="item" action="/list/add" method="post">
+        <input type="text" placeholder="Enter New Item" name="newItem" id="listItemNew" autocomplete="off" required>
+        <input type="hidden" name="parent" value="<%=listTitle%>">
+        <input type="hidden" id="listItemId" name="itemId" value="0">
+        <button type="submit" name="list" id="newItemSubmitButton"><p class=item359>+</p></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function PutForEdit(elm) {
+    document.getElementById("listItemNew").setAttribute("value", elm.children[1].innerText);
+    document.getElementById("listItemId").setAttribute("value", elm.children[0].value);
+    document.getElementById("newItemSubmitButton").innerHTML = "<p class=item358>Edit</p>";
+  }
+  function GoToList(elm){
+window.location.href="/list/"+elm.children[0].innerText;
+  }
+</script>
+
+<%- include("footer") -%>
