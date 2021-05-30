@@ -173,11 +173,11 @@
   }
 
   div.content {
-    margin-left: 200px;
+    margin-left: 300px;
     padding: 1px 16px;
   }
 
-  @media screen and (max-width: 700px) {
+  /* @media screen and (max-width: 700px) {
     .sidebar {
       width: 100%;
       height: auto;
@@ -191,17 +191,27 @@
     div.content {
       margin-left: 0;
     }
-  }
+  } */
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 850px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+
     .sidebar a {
       text-align: center;
       float: none;
+    }
+    div.content, .list-content {
+      margin-left: 0;
     }
   }
 
   .btn {
     border: 2px solid black;
+    border-radius: 5px;
     background-color: white;
     color: black;
     padding: 4px !important;
@@ -278,19 +288,19 @@
 </style>
 
 <div class="sidebar">
-  <h1 style="color: black;display: inline-block; vertical-align: middle;"> Lists </h1> <a class="btn info"
+  <h1 style="color: black;display: inline-block; vertical-align: middle; border-right: 2px solid black;"> Lists </h1> <a class="btn info"
     href="/Signout">Signout</a>
   <%  parents.forEach(function(p){ %>
   <% if (p.name==listTitle) { %>
   <div class="listGroupBox active" onclick="GoToList(this)">
     <span class="listName"><%=p.name%></span>
-    <a style="margin-left:-0.5vw;" class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
+    <a class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
     <a class="btn danger" href="/group/delete/<%=p._id%>">Delete</a>
   </div>
   <%} else { %>
   <div class="listGroupBox" onclick="GoToList(this)">
     <span class="listName"><%=p.name%></span>
-    <a style="margin-left:-0.5vw;" class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
+    <a class="btn warning" href="/group/edit/<%=p._id%>">Edit</a>
     <a class="btn danger" href="/group/delete/<%=p._id%>">Delete</a>
   </div>
 
@@ -304,7 +314,7 @@
   </div>
 </div>
 <div class="content">
-  <div>
+  <div class="list-content">
     <div class="box" id="heading">
       <h1> List: <%= listTitle %> </h1>
     </div>
