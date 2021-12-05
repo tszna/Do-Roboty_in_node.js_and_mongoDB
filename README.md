@@ -14,3 +14,8 @@ następnie:
 <pre><code>node server</code></pre>
 Baza danych działa na zewnętrznym serwerze w oparciu o MongoDB Atlas.
 Strona główna aplikacji jest dostępna domyślnie na porcie 3000.
+
+<h4>Uruchomienia projektu poprzez docker</h4>
+Po pobraniu projektu należy uruchomić terminal w głównym katalogu aplikacji i wpisać komendę:
+<pre><code>docker-compose up</code></pre>
+Aaplikacja wyświetla się na porcie 3200. Domyślne porty można zmienić w pliku docker-compose.yml

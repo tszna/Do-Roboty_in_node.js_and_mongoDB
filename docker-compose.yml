@@ -1,0 +1,13 @@
+services:
+  ng-node:
+    build: ./
+    container_name: no-node
+    volumes:
+      - ./:/usr/src/app
+    ports:
+      - '3200:3000'
+    command: bash -c "npm install && node server --host 0.0.0.0"
+
+networks:
+  ng-network:
+    driver: "bridge"
